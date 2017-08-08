@@ -12,7 +12,7 @@ setup(
         'mysqlclient==1.3.10',
         'SQLAlchemy==1.1.13',
         'locksmith==1.0.0'
-    ]
+    ],
     dependency_links=[
         'git+https://github.com/Bookmark-Novels/Locksmith@v1'
     ]
