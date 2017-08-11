@@ -14,6 +14,6 @@ setup(
         'locksmith==1.0.0'
     ],
     dependency_links=[
-        'https://github.com/Bookmark-Novels/Locksmith/tarball/v1#egg=locksmith-1.0.0'
+        'https://github.com/Bookmark-Novels/Locksmith/tarball/v1#egg=locksmith'
     ]
 )
