@@ -24,7 +24,7 @@ class Instance(BaseModel, Model):
         with session_factory() as sess:
             try:
                 sess.query(Instance).filter(
-                    Instance.instance_id==instance_id
+                    Instance.instance_id == instance_id
                 ).one()
                 return True
             except NoResultFound:
@@ -40,7 +40,7 @@ class Instance(BaseModel, Model):
         with session_factory() as sess:
             try:
                 instance = sess.query(Instance).filter(
-                    Instance.instance_id==instance_id
+                    Instance.instance_id == instance_id
                 ).one()
 
                 sess.expunge(instance)

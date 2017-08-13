@@ -1,10 +1,11 @@
 from datetime import datetime
 
-from sqlalchemy import  Boolean, Column, DateTime, Integer, String
+from sqlalchemy import Boolean, Column, DateTime, Integer, String
 from sqlalchemy.orm.exc import NoResultFound
 
 from .accounttype import Types
 from ..db import BaseModel, Model, session_factory
+
 
 class Account(BaseModel, Model):
     """
@@ -27,7 +28,7 @@ class Account(BaseModel, Model):
         Sets an account's display name to something else.
         :param new_name: The new display name to use for the account.
         """
-        with session_factory() as sess:
+        with session_factory():
             self.display_name = new_name
             self.save()
             self._update_last_updated()
@@ -37,7 +38,7 @@ class Account(BaseModel, Model):
         Sets an account's email address to something else.
         :param new_email: The new email address to use for the account.
         """
-        with session_factory() as sess:
+        with session_factory():
             self.email = new_email
             self.save()
             self._update_last_updated()
@@ -47,10 +48,10 @@ class Account(BaseModel, Model):
         Sets an account's password to something else.
         Important: This method expects the provided password to already be
         well hashed.
-        :param new_email: The new password to use for the account.
+        :param new_password: The new password to use for the account.
         """
-        with session_factory() as sess:
-            self.email = new_email
+        with session_factory():
+            self.email = new_password
             self.save()
             self._update_last_updated()
 
@@ -59,7 +60,7 @@ class Account(BaseModel, Model):
         Sets an account's active state to something else
         :param active_state: The new active state for the account.
         """
-        with session_factory() as sess:
+        with session_factory():
             self.is_active = active_state
             self.save()
             self._update_last_updated()
@@ -67,25 +68,25 @@ class Account(BaseModel, Model):
     def set_timezone(self, timezone):
         """
         Sets an account's timezone to something else
-        :param active_state: The new timezone for the account.
+        :param timezone: The new timezone for the account.
         """
-        with session_factory() as sess:
+        with session_factory():
             self.timezone = timezone
             self.save()
             self._update_last_updated()
 
     @staticmethod
-    def from_id(id):
+    def from_id(account_id):
         """
         Fetches and returns an Account object given an
         account ID.
-        :param id: The ID to fetch the account for.
+        :param account_id: The ID to fetch the account for.
         :return: An Account object or None if there is no account found.
         """
         with session_factory() as sess:
             try:
                 account = sess.query(Account).filter(
-                    Account.id==id
+                    Account.id == account_id
                 ).one()
 
                 sess.expunge(account)
@@ -105,7 +106,7 @@ class Account(BaseModel, Model):
         with session_factory() as sess:
             try:
                 account = sess.query(Account).filter(
-                    Account.email==email
+                    Account.email == email
                 ).one()
 
                 sess.expunge(account)

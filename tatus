@@ -1,0 +1,313 @@
+warning: LF will be replaced by CRLF in .editorconfig.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in Vagrantfile.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in bookmark_database/config.py.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in bookmark_database/db.py.
+The file will have its original line endings in your working directory.
+[1mdiff --git a/.editorconfig b/.editorconfig[m
+[1mindex ab0d5df..ac59946 100644[m
+[1m--- a/.editorconfig[m
+[1m+++ b/.editorconfig[m
+[36m@@ -16,4 +16,4 @@[m [mindent_size = 4[m
+ [m
+ # Tab indentation (no size specified)[m
+ [Makefile][m
+[31m-indent_style = tab[m
+\ No newline at end of file[m
+[32m+[m[32mindent_style = tab[m
+[1mdiff --git a/Vagrantfile b/Vagrantfile[m
+[1mindex 99792ee..7e7c860 100644[m
+[1m--- a/Vagrantfile[m
+[1m+++ b/Vagrantfile[m
+[36m@@ -7,7 +7,6 @@[m
+ # you're doing.[m
+ Vagrant.configure("2") do |config|[m
+   config.vm.box = "ubuntu/trusty64"[m
+[31m-  config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"[m
+ [m
+   config.vm.provision "shell", inline: <<-SHELL[m
+     wget -O - --quiet https://raw.githubusercontent.com/Bookmark-Novels/Resources/master/Tools/Scripts/vagrant_bootstrap.sh | sh[m
+[1mdiff --git a/bookmark_database/config.py b/bookmark_database/config.py[m
+[1mindex 74c507f..9aa1892 100644[m
+[1m--- a/bookmark_database/config.py[m
+[1m+++ b/bookmark_database/config.py[m
+[36m@@ -1,4 +1,7 @@[m
+[31m-__all__ = ['set_port', 'set_database', 'set_password', 'set_user', 'get_credentials', 'set_host', 'set_pool_recycle', 'get_pool_recycle'][m
+[32m+[m[32m__all__ = [[m
+[32m+[m[32m    'set_port', 'set_database', 'set_password', 'set_user', 'get_credentials', 'set_host', 'set_pool_recycle',[m
+[32m+[m[32m    'get_pool_recycle'[m
+[32m+[m[32m][m
+ [m
+ _user = None[m
+ _password = None[m
+[1mdiff --git a/bookmark_database/db.py b/bookmark_database/db.py[m
+[1mindex 87c30dd..03e869e 100644[m
+[1m--- a/bookmark_database/db.py[m
+[1m+++ b/bookmark_database/db.py[m
+[36m@@ -35,7 +35,7 @@[m [mdef session_factory():[m
+     finally:[m
+         s.close()[m
+ [m
+[31m-class Model():[m
+[32m+[m[32mclass Model:[m
+     """[m
+     Base model for all models. This class comes with[m
+     several utility functions.[m
+[1mdiff --git a/bookmark_database/models/account.py b/bookmark_database/models/account.py[m
+[1mindex 7568787..cd9d53c 100755[m
+[1m--- a/bookmark_database/models/account.py[m
+[1m+++ b/bookmark_database/models/account.py[m
+[36m@@ -1,11 +1,12 @@[m
+ from datetime import datetime[m
+ [m
+[31m-from sqlalchemy import  Boolean, Column, DateTime, Integer, String[m
+[32m+[m[32mfrom sqlalchemy import Boolean, Column, DateTime, Integer, String[m
+ from sqlalchemy.orm.exc import NoResultFound[m
+ [m
+ from .accounttype import Types[m
+ from ..db import BaseModel, Model, session_factory[m
+ [m
+[32m+[m
+ class Account(BaseModel, Model):[m
+     """[m
+     Represents a Bookmark account.[m
+[36m@@ -27,7 +28,7 @@[m [mclass Account(BaseModel, Model):[m
+         Sets an account's display name to something else.[m
+         :param new_name: The new display name to use for the account.[m
+         """[m
+[31m-        with session_factory() as sess:[m
+[32m+[m[32m        with session_factory():[m
+             self.display_name = new_name[m
+             self.save()[m
+             self._update_last_updated()[m
+[36m@@ -37,7 +38,7 @@[m [mclass Account(BaseModel, Model):[m
+         Sets an account's email address to something else.[m
+         :param new_email: The new email address to use for the account.[m
+         """[m
+[31m-        with session_factory() as sess:[m
+[32m+[m[32m        with session_factory():[m
+             self.email = new_email[m
+             self.save()[m
+             self._update_last_updated()[m
+[36m@@ -47,10 +48,10 @@[m [mclass Account(BaseModel, Model):[m
+         Sets an account's password to something else.[m
+         Important: This method expects the provided password to already be[m
+         well hashed.[m
+[31m-        :param new_email: The new password to use for the account.[m
+[32m+[m[32m        :param new_password: The new password to use for the account.[m
+         """[m
+[31m-        with session_factory() as sess:[m
+[31m-            self.email = new_email[m
+[32m+[m[32m        with session_factory():[m
+[32m+[m[32m            self.email = new_password[mwarning: LF will be replaced by CRLF in bookmark_database/models/account.py.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in bookmark_database/models/accounttype.py.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in bookmark_database/models/instance.py.
+The file will have its original line endings in your working directory.
+
+             self.save()[m
+             self._update_last_updated()[m
+ [m
+[36m@@ -59,7 +60,7 @@[m [mclass Account(BaseModel, Model):[m
+         Sets an account's active state to something else[m
+         :param active_state: The new active state for the account.[m
+         """[m
+[31m-        with session_factory() as sess:[m
+[32m+[m[32m        with session_factory():[m
+             self.is_active = active_state[m
+             self.save()[m
+             self._update_last_updated()[m
+[36m@@ -67,25 +68,25 @@[m [mclass Account(BaseModel, Model):[m
+     def set_timezone(self, timezone):[m
+         """[m
+         Sets an account's timezone to something else[m
+[31m-        :param active_state: The new timezone for the account.[m
+[32m+[m[32m        :param timezone: The new timezone for the account.[m
+         """[m
+[31m-        with session_factory() as sess:[m
+[32m+[m[32m        with session_factory():[m
+             self.timezone = timezone[m
+             self.save()[m
+             self._update_last_updated()[m
+ [m
+     @staticmethod[m
+[31m-    def from_id(id):[m
+[32m+[m[32m    def from_id(account_id):[m
+         """[m
+         Fetches and returns an Account object given an[m
+         account ID.[m
+[31m-        :param id: The ID to fetch the account for.[m
+[32m+[m[32m        :param account_id: The ID to fetch the account for.[m
+         :return: An Account object or None if there is no account found.[m
+         """[m
+         with session_factory() as sess:[m
+             try:[m
+                 account = sess.query(Account).filter([m
+[31m-                    Account.id==id[m
+[32m+[m[32m                    Account.id == account_id[m
+                 ).one()[m
+ [m
+                 sess.expunge(account)[m
+[36m@@ -105,7 +106,7 @@[m [mclass Account(BaseModel, Model):[m
+         with session_factory() as sess:[m
+             try:[m
+                 account = sess.query(Account).filter([m
+[31m-                    Account.email==email[m
+[32m+[m[32m                    Account.email == email[m
+                 ).one()[m
+ [m
+                 sess.expunge(account)[m
+[36m@@ -140,4 +141,4 @@[m [mclass Account(BaseModel, Model):[m
+         """[m
+         with session_factory() as sess:[m
+             self.last_updated = datetime.utcnow()[m
+[31m-            self.save()[m
+\ No newline at end of file[m
+[32m+[m[32m            self.save()[m
+[1mdiff --git a/bookmark_database/models/accounttype.py b/bookmark_database/models/accounttype.py[m
+[1mindex d0a73b1..eaf0342 100644[m
+[1m--- a/bookmark_database/models/accounttype.py[m
+[1m+++ b/bookmark_database/models/accounttype.py[m
+[36m@@ -1,6 +1,6 @@[m
+ from sqlalchemy import Column, Integer, String[m
+ [m
+[31m-from ..db import BaseModel, Model, session_factory[m
+[32m+[m[32mfrom ..db import BaseModel, Model[m
+ [m
+ class AccountType(BaseModel, Model):[m
+     """[m
+[1mdiff --git a/bookmark_database/models/instance.py b/bookmark_database/models/instance.py[m
+[1mindex 36c0572..8a32b0c 100644[m
+[1m--- a/bookmark_database/models/instance.py[m
+[1m+++ b/bookmark_database/models/instance.py[m
+[36m@@ -24,7 +24,7 @@[m [mclass Instance(BaseModel, Model):[m
+         with session_factory() as sess:[m
+             try:[m
+                 sess.query(Instance).filter([m
+[31m-                    Instance.instance_id==instance_id[m
+[32m+[m[32m                    Instance.instance_id == instance_id[m
+                 ).one()[m
+                 return True[m
+             except NoResultFound:[m
+[36m@@ -40,7 +40,7 @@[m [mclass Instance(BaseModel, Model):[m
+         with session_factory() as sess:[m
+             try:[m
+                 instance = sess.query(Instance).filter([m
+[31m-                    Instance.instance_id==instance_id[m
+[32m+[m[32m                    Instance.instance_id == instance_id[m
+                 ).one()[m
+ [m
+                 sess.expunge(instance)[m
+[1mdiff --git a/bookmark_database/models/nonce.py b/bookmark_database/models/nonce.py[m
+warning: LF will be replaced by CRLF in bookmark_database/models/nonce.py.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in bookmark_database/models/session.py.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in tests/test_account.py.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in tests/test_accounttype.py.
+The file will have its original line endings in your working directory.
+[1mindex 994fa4f..4334719 100644[m
+[1m--- a/bookmark_database/models/nonce.py[m
+[1m+++ b/bookmark_database/models/nonce.py[m
+[36m@@ -31,9 +31,9 @@[m [mclass Nonce(BaseModel, Model):[m
+         with session_factory() as sess:[m
+             try:[m
+                 n = sess.query(Nonce).filter([m
+[31m-                    Nonce.nonce==challenge,[m
+[31m-                    Nonce.origin==origin_id,[m
+[31m-                    Nonce.is_active==True,[m
+[32m+[m[32m                    Nonce.nonce == challenge,[m
+[32m+[m[32m                    Nonce.origin == origin_id,[m
+[32m+[m[32m                    Nonce.is_active == True,[m
+                     Nonce.expires > datetime.utcnow()[m
+                 ).one()[m
+ [m
+[1mdiff --git a/bookmark_database/models/session.py b/bookmark_database/models/session.py[m
+[1mindex b06f512..f7896f0 100755[m
+[1m--- a/bookmark_database/models/session.py[m
+[1m+++ b/bookmark_database/models/session.py[m
+[36m@@ -59,8 +59,8 @@[m [mclass Session(BaseModel, Model):[m
+         with session_factory() as sess:[m
+             try:[m
+                 sess.query(Session).filter([m
+[31m-                    Session.session_key==key,[m
+[31m-                    Session.is_active==True[m
+[32m+[m[32m                    Session.session_key == key,[m
+[32m+[m[32m                    Session.is_active == True[m
+                 ).one()[m
+                 return True[m
+             except NoResultFound:[m
+[36m@@ -76,7 +76,7 @@[m [mclass Session(BaseModel, Model):[m
+         with session_factory() as sess:[m
+             try:[m
+                 session = sess.query(Session).filter([m
+[31m-                    Session.session_key==key[m
+[32m+[m[32m                    Session.session_key == key[m
+                 ).one()[m
+                 sess.expunge(session)[m
+                 return session[m
+[1mdiff --git a/tests/test_account.py b/tests/test_account.py[m
+[1mindex 663a27e..d85e297 100644[m
+[1m--- a/tests/test_account.py[m
+[1m+++ b/tests/test_account.py[m
+[36m@@ -1,7 +1,7 @@[m
+[31m-from datetime import datetime[m
+ import os[m
+ import sys[m
+ import uuid[m
+[32m+[m[32mfrom datetime import datetime[m
+ [m
+ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))[m
+ [m
+[36m@@ -12,9 +12,7 @@[m [mconfig.set_user(os.environ['DATABASE_USER'])[m
+ config.set_password(os.environ['DATABASE_PASS'])[m
+ config.set_database(os.environ['DATABASE_NAME'])[m
+ [m
+[31m-from bookmark_database.db import session_factory[m
+ from bookmark_database.models.account import Account[m
+[31m-from bookmark_database.models.accounttype import Types[m
+ [m
+ def test_create_account():[m
+     email = str(uuid.uuid4())[m
+[36m@@ -42,5 +40,7 @@[m [mdef test_update_account():[m
+ [m
+     test_account.set_display_name(new_name)[m
+ [m
+[32m+[m[32m    test_account = Account.from_id(account_id)[m
+[32m+[m
+     assert test_account.last_updated > now[m
+[31m-    assert test_account.display_name == new_name[m
+\ No newline at end of file[m
+[32m+[m[32m    assert test_account.display_name == new_name[m
+[1mdiff --git a/tests/test_accounttype.py b/tests/test_accounttype.py[m
+[1mindex f1fb318..255846f 100644[m
+[1m--- a/tests/test_accounttype.py[m
+[1m+++ b/tests/test_accounttype.py[m
+[36m@@ -19,4 +19,4 @@[m [mdef test_account_type():[m
+             AccountType.id==Types.Admin[m
+         ).one()[m
+ [m
+[31m-        assert account_type.display_name == 'Admin'[m
+\ No newline at end of file[m
+[32m+[m[32m        assert account_type.display_name == 'Admin'[m
+[1mdiff --git a/tests/test_config.py b/tests/test_config.py[m
+[1mindex 68f58ef..22649a7 100644[m
+[1m--- a/tests/test_config.py[m
+[1m+++ b/tests/test_config.py[m
+[36m@@ -6,16 +6,16 @@[m [msys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))[m
+ from bookmark_database import config[m
+ [m
+ def test_requires_int():[m
+[31m-    def try_port(value):[m
+[32m+[m[32m    def try_port(test_value):[m
+         try:[m
+[31m-        warning: LF will be replaced by CRLF in tests/test_config.py.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in tests/test_instance.py.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in tests/test_nonce.py.
+The file will have its original line endings in your working directory.

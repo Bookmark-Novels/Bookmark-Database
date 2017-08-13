@@ -1,4 +1,7 @@
-__all__ = ['set_port', 'set_database', 'set_password', 'set_user', 'get_credentials', 'set_host', 'set_pool_recycle', 'get_pool_recycle']
+__all__ = [
+    'set_port', 'set_database', 'set_password', 'set_user', 'get_credentials', 'set_host', 'set_pool_recycle',
+    'get_pool_recycle'
+]
 
 _user = None
 _password = None

@@ -35,7 +35,7 @@ def session_factory():
     finally:
         s.close()
 
-class Model():
+class Model:
     """
     Base model for all models. This class comes with
     several utility functions.
