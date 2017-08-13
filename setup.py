@@ -9,11 +9,11 @@ setup(
     url='https://github.com/Bookmark-Novels/Bookmark-Database',
     license='MIT',
     install_requires=[
-        'mysqlclient==1.3.10',
-        'SQLAlchemy==1.1.13',
-        'locksmith==1.0.0'
-    ]
+        'mysqlclient',
+        'SQLAlchemy',
+        'locksmith'
+    ],
     dependency_links=[
-        'git+https://github.com/Bookmark-Novels/Locksmith@v1'
+        'git+git://github.com/Bookmark-Novels/Locksmith.git#egg=locksmith'
     ]
 )
