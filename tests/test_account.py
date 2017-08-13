@@ -1,7 +1,7 @@
-from datetime import datetime
 import os
 import sys
 import uuid
+from datetime import datetime
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
@@ -12,9 +12,7 @@ config.set_user(os.environ['DATABASE_USER'])
 config.set_password(os.environ['DATABASE_PASS'])
 config.set_database(os.environ['DATABASE_NAME'])
 
-from bookmark_database.db import session_factory
 from bookmark_database.models.account import Account
-from bookmark_database.models.accounttype import Types
 
 def test_create_account():
     email = str(uuid.uuid4())
@@ -41,6 +39,8 @@ def test_update_account():
     now = datetime.utcnow()
 
     test_account.set_display_name(new_name)
+
+    test_account = Account.from_id(account_id)
 
     assert test_account.last_updated > now
     assert test_account.display_name == new_name

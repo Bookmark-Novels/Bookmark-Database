@@ -31,9 +31,9 @@ class Nonce(BaseModel, Model):
         with session_factory() as sess:
             try:
                 n = sess.query(Nonce).filter(
-                    Nonce.nonce==challenge,
-                    Nonce.origin==origin_id,
-                    Nonce.is_active==True,
+                    Nonce.nonce == challenge,
+                    Nonce.origin == origin_id,
+                    Nonce.is_active == True,
                     Nonce.expires > datetime.utcnow()
                 ).one()
 

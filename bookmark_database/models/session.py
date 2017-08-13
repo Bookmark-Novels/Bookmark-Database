@@ -59,8 +59,8 @@ class Session(BaseModel, Model):
         with session_factory() as sess:
             try:
                 sess.query(Session).filter(
-                    Session.session_key==key,
-                    Session.is_active==True
+                    Session.session_key == key,
+                    Session.is_active == True
                 ).one()
                 return True
             except NoResultFound:
@@ -76,7 +76,7 @@ class Session(BaseModel, Model):
         with session_factory() as sess:
             try:
                 session = sess.query(Session).filter(
-                    Session.session_key==key
+                    Session.session_key == key
                 ).one()
                 sess.expunge(session)
                 return session

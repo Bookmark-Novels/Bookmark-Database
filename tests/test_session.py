@@ -11,7 +11,6 @@ config.set_user(os.environ['DATABASE_USER'])
 config.set_password(os.environ['DATABASE_PASS'])
 config.set_database(os.environ['DATABASE_NAME'])
 
-from bookmark_database.db import session_factory
 from bookmark_database.models.account import Account
 from bookmark_database.models.session import Session
 

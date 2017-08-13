@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 
-from ..db import BaseModel, Model, session_factory
+from ..db import BaseModel, Model
 
 class AccountType(BaseModel, Model):
     """
