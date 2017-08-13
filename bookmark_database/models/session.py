@@ -4,7 +4,7 @@ import uuid
 from sqlalchemy import Boolean, Column, DateTime, Integer, String
 from sqlalchemy.orm.exc import NoResultFound
 
-from db import BaseModel, Model, session_factory
+from ..db import BaseModel, Model, session_factory
 
 class Session(BaseModel, Model):
     __tablename__ = 'bookmark_sessions'

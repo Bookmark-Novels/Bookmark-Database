@@ -1,12 +1,10 @@
 from datetime import datetime
-import traceback
-import uuid
 
 from sqlalchemy import  Boolean, Column, DateTime, Integer, String
 from sqlalchemy.orm.exc import NoResultFound
 
-from models.accounttype import Types
-from db import BaseModel, Model, session_factory
+from .accounttype import Types
+from ..db import BaseModel, Model, session_factory
 
 class Account(BaseModel, Model):
     __tablename__ = 'bookmark_accounts'

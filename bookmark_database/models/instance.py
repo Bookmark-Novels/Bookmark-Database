@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm.exc import NoResultFound
 
-from db import BaseModel, Model, session_factory
+from ..db import BaseModel, Model, session_factory
 
 class Instance(BaseModel, Model):
     __tablename__ = 'bookmark_instances'
