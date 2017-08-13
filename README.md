@@ -4,9 +4,10 @@ This package contains all the necessary code to interact with Bookmark's databas
 
 ## Pipelines
 
-**Master:** [![Build Status](https://travis-ci.org/Bookmark-Novels/Bookmark-Database.svg?branch=master)](https://travis-ci.org/Bookmark-Novels/Bookmark-Database)
-
-**Dev:** [![Build Status](https://travis-ci.org/Bookmark-Novels/Bookmark-Database.svg?branch=dev)](https://travis-ci.org/Bookmark-Novels/Bookmark-Database)
+| Branch | Status |
+|--------|--------|
+| master | [![Build Status](https://travis-ci.org/Bookmark-Novels/Bookmark-Database.svg?branch=master)](https://travis-ci.org/Bookmark-Novels/Bookmark-Database) |
+| dev    | [![Build Status](https://travis-ci.org/Bookmark-Novels/Bookmark-Database.svg?branch=dev)](https://travis-ci.org/Bookmark-Novels/Bookmark-Database) |
 
 ## To Contributors
 
