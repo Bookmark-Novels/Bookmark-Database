@@ -1,14 +1,15 @@
 from datetime import datetime
-import traceback
-import uuid
 
 from sqlalchemy import  Boolean, Column, DateTime, Integer, String
 from sqlalchemy.orm.exc import NoResultFound
 
-from models.accounttype import Types
-from db import BaseModel, Model, session_factory
+from .accounttype import Types
+from ..db import BaseModel, Model, session_factory
 
 class Account(BaseModel, Model):
+    """
+    Represents a Bookmark account.
+    """
     __tablename__ = 'bookmark_accounts'
 
     id = Column(Integer, primary_key=True)
@@ -21,8 +22,66 @@ class Account(BaseModel, Model):
     created_at = Column(DateTime)
     last_updated = Column(DateTime)
 
+    def set_display_name(self, new_name):
+        """
+        Sets an account's display name to something else.
+        :param new_name: The new display name to use for the account.
+        """
+        with session_factory() as sess:
+            self.display_name = new_name
+            self.save()
+            self._update_last_updated()
+
+    def set_email(self, new_email):
+        """
+        Sets an account's email address to something else.
+        :param new_email: The new email address to use for the account.
+        """
+        with session_factory() as sess:
+            self.email = new_email
+            self.save()
+            self._update_last_updated()
+
+    def set_password(self, new_password):
+        """
+        Sets an account's password to something else.
+        Important: This method expects the provided password to already be
+        well hashed.
+        :param new_email: The new password to use for the account.
+        """
+        with session_factory() as sess:
+            self.email = new_email
+            self.save()
+            self._update_last_updated()
+
+    def set_active_state(self, active_state):
+        """
+        Sets an account's active state to something else
+        :param active_state: The new active state for the account.
+        """
+        with session_factory() as sess:
+            self.is_active = active_state
+            self.save()
+            self._update_last_updated()
+
+    def set_timezone(self, timezone):
+        """
+        Sets an account's timezone to something else
+        :param active_state: The new timezone for the account.
+        """
+        with session_factory() as sess:
+            self.timezone = timezone
+            self.save()
+            self._update_last_updated()
+
     @staticmethod
     def from_id(id):
+        """
+        Fetches and returns an Account object given an
+        account ID.
+        :param id: The ID to fetch the account for.
+        :return: An Account object or None if there is no account found.
+        """
         with session_factory() as sess:
             try:
                 account = sess.query(Account).filter(
@@ -37,6 +96,12 @@ class Account(BaseModel, Model):
 
     @staticmethod
     def from_email(email):
+        """
+        Fetches and returns an Account object given an
+        email address.
+        :param email: The email address to fetch the account for.
+        :return: An Account object or None if there is no account found.
+        """
         with session_factory() as sess:
             try:
                 account = sess.query(Account).filter(
@@ -51,6 +116,13 @@ class Account(BaseModel, Model):
 
     @staticmethod
     def create(name, email, password):
+        """
+        Creates a new Bookmark account using the provided information.
+        :param name: The display name for the account.
+        :param email: The email address for the account.
+        :param password: The password for the account.
+        :return: The ID of the new user account.
+        """
         now = datetime.utcnow()
         acc = Account(
             display_name=name,
@@ -61,3 +133,11 @@ class Account(BaseModel, Model):
         ).save()
 
         return Account.from_email(email).id
+
+    def _update_last_updated(self):
+        """
+        Updates the last updated timestamp for an account.
+        """
+        with session_factory() as sess:
+            self.last_updated = datetime.utcnow()
+            self.save()
