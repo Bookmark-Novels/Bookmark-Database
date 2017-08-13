@@ -7,7 +7,7 @@ from .config import get_credentials
 
 __all__ = ['BaseModel', 'Model', 'session_factory']
 
-_connection_string = 'mysql://{user}:{password}@{host}:{port}/{name}?charset=utf8'.format(**get_credentials())
+_connection_string = 'mysql://{user}:{password}@{host}:{port}/{database}?charset=utf8'.format(**get_credentials())
 _engine = create_engine(
     _connection_string, pool_recycle=600
 )

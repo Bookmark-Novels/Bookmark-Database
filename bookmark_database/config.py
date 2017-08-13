@@ -5,7 +5,7 @@ _password = None
 _database = None
 _host = None
 _port = 3306
-_pool_recyle = 600
+_pool_recycle = 600
 
 def set_user(u):
     """
@@ -45,6 +45,8 @@ def set_port(p):
     to port 3306.
     :param p: The port to use defaulting to 3306.
     """
+    _require_int(p)
+
     global _port
     _port = p
 
@@ -55,8 +57,10 @@ def set_pool_recycle(p):
     :param p: The pool recycle interval in seconds.
     :return:
     """
-    global _pool_recyle
-    _pool_recyle = p
+    _require_int(p)
+
+    global _pool_recycle
+    _pool_recycle = p
 
 def get_credentials():
     """
@@ -77,4 +81,13 @@ def get_pool_recycle():
     Fetches the connection pool recycle interval.
     :return: The recycle interval.
     """
-    return _pool_recyle
+    return _pool_recycle
+
+def _require_int(value):
+    """
+    Errors if the given value is not some form of integer.
+    :param value: The value to test.
+    """
+    # Booleans are integers in Python.
+    if not isinstance(value, int) or value is True or value is False:
+        raise ValueError('Expected integer value.')
