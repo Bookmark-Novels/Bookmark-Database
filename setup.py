@@ -14,6 +14,6 @@ setup(
         'locksmith'
     ],
     dependency_links=[
-        'git+git://github.com/Bookmark-Novels/Locksmith.git#egg=locksmith-v1.0.0'
+        'git+git://github.com/Bookmark-Novels/Locksmith.git#egg=locksmith'
     ]
 )
