@@ -42,5 +42,5 @@ def test_update_account():
 
     test_account = Account.from_id(account_id)
 
-    assert test_account.last_updated > now
     assert test_account.display_name == new_name
+    assert test_account.last_updated != now
