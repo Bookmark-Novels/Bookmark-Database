@@ -1,3 +1,2 @@
 mysqlclient==1.3.10
 SQLAlchemy==1.1.13
-git+git://github.com/Bookmark-Novels/Locksmith.git@v1.0.0#egg=locksmith
