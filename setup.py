@@ -4,7 +4,7 @@ setup(
     name='bookmark-database',
     description='Python package for interacting with Bookmark\'s database.',
     author='Bookmark Novels',
-    version='1.0.0',
+    version='1.0.2',
     packages=['bookmark_database'],
     url='https://github.com/Bookmark-Novels/Bookmark-Database',
     license='MIT',
