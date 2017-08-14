@@ -1,4 +1,4 @@
-# Bookmark Models
+# Bookmark Database
 
 This package contains all the necessary code to interact with Bookmark's database.
 
